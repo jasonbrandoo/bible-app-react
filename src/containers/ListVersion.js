@@ -1,24 +1,40 @@
 import React from 'react';
-// import Sidebar from '../components/layout/Sidebar';
 import useFetch from '../hooks/useFetch';
+import Text from '../components/Text';
+import Link from '../components/Link';
+import List from '../components/List';
 
 const BookVersion = () => {
   const [state] = useFetch('https://api.scripture.api.bible/v1/bibles');
-  console.log(state.error);
 
   let ListVersion;
 
   if (state.data === null) {
-    ListVersion = <p>loading</p>;
+    ListVersion = <Text>loading</Text>;
   }
   if (state.error) {
-    ListVersion = <p>Oopss something went error</p>;
+    ListVersion = <Text>Oopss something went error</Text>;
   }
   if (state.data) {
-    ListVersion = state.data.map(value => <p>{value.name}</p>);
+    const { data } = state;
+    data.sort((a, b) => {
+      const A = a.language.name.toUpperCase();
+      const B = b.language.name.toUpperCase();
+      if (A < B) {
+        return -1;
+      }
+      if (A > B) {
+        return 1;
+      }
+      return 0;
+    });
+
+    ListVersion = data.map(value => (
+      <Link to={`/${value.id}`}>{value.name}</Link>
+    ));
   }
 
-  return <React.Fragment>{ListVersion}</React.Fragment>;
+  return <List>{ListVersion}</List>;
 };
 
 export default BookVersion;

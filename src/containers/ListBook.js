@@ -1,48 +1,33 @@
-import React, { Component } from 'react';
-import Books from '../components/bible/Books';
+import React from 'react';
+import useFetch from '../hooks/useFetch';
+import Text from '../components/Text';
+import Link from '../components/Link';
+import List from '../components/List';
 
-class ListBook extends Component {
-  state = {
-    listBook: [],
+const ListBook = ({
+  match: {
+    params: { bibleId },
+  },
+}) => {
+  const [state] = useFetch(
+    `https://api.scripture.api.bible/v1/bibles/${bibleId}/books`,
+  );
+
+  let Books;
+
+  if (state.data === null) {
+    Books = <Text>loading</Text>;
+  }
+  if (state.error) {
+    Books = <Text>Oopss something went error</Text>;
+  }
+  if (state.data) {
+    Books = state.data.map(value => (
+      <Link to={`/${bibleId}/books/${value.id}`}>{value.name}</Link>
+    ));
   }
 
-  componentDidMount() {
-    const { match } = this.props;
-    const { bibleId } = match.params;
-    this.getBook(bibleId);
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const { bibleId } = nextProps.match.params;
-    const { match } = this.props;
-    const bookId = match.params.bibleId;
-    if (bibleId !== bookId) {
-      this.getBook(bibleId);
-    }
-    return true;
-  }
-
-  getBook = (bibleId) => {
-    const myHeaders = new Headers({
-      'api-key': process.env.REACT_APP_API_KEY,
-    });
-    fetch(`https://api.scripture.api.bible/v1/bibles/${bibleId}/books`, { headers: myHeaders })
-      .then(res => res.json())
-      .then((res) => {
-        this.setState({
-          listBook: res.data,
-        });
-      })
-      .catch(err => console.log(err));
-  }
-
-  render() {
-    const { listBook } = this.state;
-    const { match } = this.props;
-    return (
-      <Books books={listBook} version={match.params.bibleId} />
-    );
-  }
-}
+  return <List>{Books}</List>;
+};
 
 export default ListBook;

@@ -15,9 +15,7 @@ const theme = {
   four: '#eeeeee',
 };
 
-const Wrapper = styled.div`
-  display: flex;
-`;
+const Wrapper = styled.div``;
 
 const App = () => (
   <BrowserRouter>
@@ -25,8 +23,8 @@ const App = () => (
       <Layout>
         <Navbar />
         <Wrapper>
-          <ListVersion />
           <Switch>
+            <Route exact path="/" component={ListVersion} />
             <Route exact path="/:bibleId" component={ListBook} />
             <Route
               exact

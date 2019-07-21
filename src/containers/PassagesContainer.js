@@ -1,6 +1,36 @@
-import React, { Component } from 'react';
-import Passages from '../components/bible/Passages';
+import React from 'react';
+import useFetch from '../hooks/useFetch';
+import Text from '../components/Text';
+import Link from '../components/Link';
+import List from '../components/List';
 
+const Passages = ({
+  match: {
+    params: { bibleId, passagesId },
+  },
+}) => {
+  const [state] = useFetch(
+    `https://api.scripture.api.bible/v1/bibles/${bibleId}/passages/${passagesId}`,
+  );
+
+  let passage;
+
+  if (state.data === null) {
+    passage = <Text>loading</Text>;
+  }
+  if (state.error) {
+    passage = <Text>Oopss something went error</Text>;
+  }
+  if (state.data) {
+    const {
+      data: { content },
+    } = state;
+    passage = <div dangerouslySetInnerHTML={{ __html: content }} />;
+  }
+
+  return <List>{passage}</List>;
+};
+/* 
 class PassagesContainer extends Component {
   state = {
     passages: [],
@@ -34,6 +64,6 @@ class PassagesContainer extends Component {
       <Passages passages={passages} />
     );
   }
-}
+} */
 
-export default PassagesContainer;
+export default Passages;

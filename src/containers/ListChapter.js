@@ -1,6 +1,36 @@
-import React, { Component } from 'react';
-import Chapters from '../components/bible/Chapters';
+import React from 'react';
+import useFetch from '../hooks/useFetch';
+import Text from '../components/Text';
+import Link from '../components/Link';
+import List from '../components/List';
 
+const ListChapter = ({
+  match: {
+    params: { bibleId, bookId },
+  },
+}) => {
+  const [state] = useFetch(
+    `https://api.scripture.api.bible/v1/bibles/${bibleId}/books/${bookId}/chapters`,
+  );
+
+  let chapter;
+
+  if (state.data === null) {
+    chapter = <Text>loading</Text>;
+  }
+  if (state.error) {
+    chapter = <Text>Oopss something went error</Text>;
+  }
+  if (state.data) {
+    chapter = state.data.map(value => (
+      <Link to={`/${bibleId}/passages/${value.id}`}>{value.reference}</Link>
+    ));
+  }
+
+  return <List>{chapter}</List>;
+};
+
+/* 
 class ListChapter extends Component {
   state = {
     listChapter: [],
@@ -35,5 +65,5 @@ class ListChapter extends Component {
     );
   }
 }
-
+ */
 export default ListChapter;
