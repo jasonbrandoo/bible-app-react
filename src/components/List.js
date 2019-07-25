@@ -3,8 +3,7 @@ import styled from 'styled-components';
 
 const StyledList = styled.div`
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  justify-content: center;
 `;
 
 const List = ({ children }) => <StyledList>{children}</StyledList>;
