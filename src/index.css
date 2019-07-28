@@ -1,6 +1,9 @@
 @font-face {
-  font-family: 'Roboto';
-  src: local('Roboto'), url(./fonts/Roboto-Regular.ttf) format('ttf');
+  font-family: 'Darker Grotesque';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Darker Grotesque Regular'), local('DarkerGrotesque-Regular'),
+    url(./assets/fonts/DarkerGrotesque-Regular.ttf) format('truetype');
 }
 
 html {
@@ -14,7 +17,7 @@ html {
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Darker Grotesque', sans-serif;
   margin: 0;
   padding: 0;
 }

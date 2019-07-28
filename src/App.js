@@ -16,23 +16,29 @@ const theme = {
 };
 
 const App = () => (
-  <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      <Layout>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={ListVersion} />
-          <Route exact path="/:bibleId" component={ListBook} />
-          <Route exact path="/:bibleId/books/:bookId" component={ListChapter} />
-          <Route
-            exact
-            path="/:bibleId/passages/:passagesId"
-            component={PassagesContainer}
-          />
-        </Switch>
-      </Layout>
-    </ThemeProvider>
-  </BrowserRouter>
+  <Layout>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <React.Fragment>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={ListVersion} />
+            <Route exact path="/:bibleId" component={ListBook} />
+            <Route
+              exact
+              path="/:bibleId/books/:bookId"
+              component={ListChapter}
+            />
+            <Route
+              exact
+              path="/:bibleId/passages/:passagesId"
+              component={PassagesContainer}
+            />
+          </Switch>
+        </React.Fragment>
+      </ThemeProvider>
+    </BrowserRouter>
+  </Layout>
 );
 
 export default App;
