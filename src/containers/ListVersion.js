@@ -3,14 +3,9 @@ import useFetch from '../hooks/useFetch';
 import Text from '../components/Text';
 import Link from '../components/Link';
 import List from '../components/List';
-import Select from '../components/Select';
 
-const BookVersion = ({ history }) => {
+const BookVersion = () => {
   const [state] = useFetch('https://api.scripture.api.bible/v1/bibles');
-
-  const handleChange = event => {
-    history.push(event.target.value);
-  };
 
   const ListVersion = () => {
     const { data } = state;
@@ -38,24 +33,29 @@ const BookVersion = ({ history }) => {
 
     return Object.keys(groupLang).map(value => (
       // <Link to={`/${value.id}`}>{value.name}</Link>
-      <optgroup key={value} label={value}>
+      <React.Fragment>
+        <Text key={value} size="2rem" borderTop bold>
+          {value}
+        </Text>
         {groupLang[value].map(version => (
-          <option key={version.id} value={version.id}>
+          <Link key={version.id} to={`${version.id}`} size="1.2rem">
             {version.name}
-          </option>
+          </Link>
         ))}
-      </optgroup>
+      </React.Fragment>
     ));
   };
 
   return (
     <List>
       {state.data === null ? (
-        <Text>loading</Text>
+        <Text size="1.2rem">loading</Text>
       ) : (
         <React.Fragment>
-          <Text bold>Available version</Text>
-          <Select change={handleChange}>{ListVersion()}</Select>
+          <Text bold size="2rem">
+            Available version
+          </Text>
+          {ListVersion()}
         </React.Fragment>
       )}
       {state.error && <Text>Oopss something went error</Text>}
