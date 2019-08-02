@@ -14,8 +14,12 @@ const StyledLink = styled(NavigationLink)`
   text-decoration: none;
   font-size: ${props => props.size};
   margin: auto;
+  font-weight: ${props => props.bold && '1000'};
   &:hover {
     color: ${props => props.theme.three};
+  }
+  &:last-of-type {
+    margin-bottom: 3rem;
   }
 `;
 

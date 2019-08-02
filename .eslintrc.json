@@ -4,8 +4,9 @@
   "env": { "es6": true, "browser": true, "node": true },
   "rules": {
     "prettier/prettier": "error",
+    "no-console": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "no-console": 0
+    "react/forbid-prop-types": 0
   },
   "parser": "babel-eslint"
 }

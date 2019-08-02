@@ -1,12 +1,12 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navbar from './components/layout/Navbar';
-import ListVersion from './containers/ListVersion';
-import ListBook from './containers/ListBook';
-import ListChapter from './containers/ListChapter';
-import PassagesContainer from './containers/PassagesContainer';
-import Layout from './components/layout/Layout';
+import Navbar from './components/Navbar';
+import ListVersion from './containers/Version';
+import ListBook from './containers/Books';
+import ListChapter from './containers/Chapters';
+import PassagesContainer from './containers/Passages';
+import Layout from './components/Layout';
 
 const theme = {
   one: '#222831',

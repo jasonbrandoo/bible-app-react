@@ -4,7 +4,7 @@ import Text from '../components/Text';
 import Link from '../components/Link';
 import List from '../components/List';
 
-const BookVersion = () => {
+const Version = () => {
   const [state] = useFetch('https://api.scripture.api.bible/v1/bibles');
 
   const ListVersion = () => {
@@ -33,8 +33,8 @@ const BookVersion = () => {
 
     return Object.keys(groupLang).map(value => (
       // <Link to={`/${value.id}`}>{value.name}</Link>
-      <React.Fragment>
-        <Text key={value} size="2rem" borderTop bold>
+      <React.Fragment key={value}>
+        <Text key={value} size="1.5rem" bold>
           {value}
         </Text>
         {groupLang[value].map(version => (
@@ -49,18 +49,29 @@ const BookVersion = () => {
   return (
     <List>
       {state.data === null ? (
-        <Text size="1.2rem">loading</Text>
+        <Text size="1.5rem" margin="50vh 0 0 0">
+          loading
+        </Text>
       ) : (
         <React.Fragment>
-          <Text bold size="2rem">
+          <Text
+            size="2rem"
+            margin="6rem auto 1rem auto"
+            padding="1rem"
+            spacing="5px"
+          >
             Available version
           </Text>
           {ListVersion()}
         </React.Fragment>
       )}
-      {state.error && <Text>Oopss something went error</Text>}
+      {state.error && (
+        <Text size="1.5rem" margin="50vh 0 0 0">
+          Opss something went error
+        </Text>
+      )}
     </List>
   );
 };
 
-export default BookVersion;
+export default Version;

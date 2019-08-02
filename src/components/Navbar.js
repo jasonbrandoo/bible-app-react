@@ -6,6 +6,8 @@ const Menu = styled.nav`
   background-color: ${props => props.theme.three};
   color: #fff;
   padding: 1rem;
+  position: fixed;
+  width: 100%;
 `;
 
 const List = styled.ul`
