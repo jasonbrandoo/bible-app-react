@@ -13,14 +13,14 @@ export const initialState = {
 export const reducer = (state, { type, payload }) => {
   switch (type) {
     case FETCH_API:
-      console.log({ type, payload });
+      console.log({ type, payload, state });
       return {
         ...state,
         url: payload,
         loading: true,
       };
     case SUCCESS:
-      console.log({ type, payload });
+      console.log({ type, payload, state });
       return {
         ...state,
         data: payload.data,
@@ -29,6 +29,7 @@ export const reducer = (state, { type, payload }) => {
     case REFETCH_API:
       return {
         ...state,
+        data: payload.data,
         loading: true,
       };
     case ERROR:

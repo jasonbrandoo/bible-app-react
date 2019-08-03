@@ -31,13 +31,13 @@ const Link = ({ children, to, ...props }) => (
 
 NavigationLink.propTypes = {
   className: PropTypes.string.isRequired,
-  to: PropTypes.string.isRequired,
+  to: PropTypes.object.isRequired,
   children: PropTypes.node.isRequired,
 };
 
 Link.propTypes = {
   children: PropTypes.node.isRequired,
-  to: PropTypes.string.isRequired,
+  to: PropTypes.object.isRequired,
 };
 
 export default Link;

@@ -22,7 +22,10 @@ const Chapters = ({
       return (
         <Link
           key={value.id}
-          to={`/${bibleId}/passages/${value.id}`}
+          to={{
+            pathname: `/${bibleId}/passages/${value.id}`,
+            state: state.data.length,
+          }}
           bold
           size="1.2rem"
         >
