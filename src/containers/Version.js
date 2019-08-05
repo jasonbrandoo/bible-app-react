@@ -38,7 +38,11 @@ const Version = () => {
           {value}
         </Text>
         {groupLang[value].map(version => (
-          <Link key={version.id} to={`${version.id}`} size="1.2rem">
+          <Link
+            key={version.id}
+            to={{ pathname: `${version.id}` }}
+            size="1.2rem"
+          >
             {version.name}
           </Link>
         ))}
@@ -48,6 +52,11 @@ const Version = () => {
 
   return (
     <List>
+      {state.error && (
+        <Text size="1.5rem" margin="50vh 0 0 0">
+          Opss something went error
+        </Text>
+      )}
       {state.data === null ? (
         <Text size="1.5rem" margin="50vh 0 0 0">
           loading
@@ -64,11 +73,6 @@ const Version = () => {
           </Text>
           {ListVersion()}
         </React.Fragment>
-      )}
-      {state.error && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
-          Opss something went error
-        </Text>
       )}
     </List>
   );

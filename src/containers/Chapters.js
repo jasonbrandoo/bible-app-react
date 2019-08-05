@@ -24,7 +24,10 @@ const Chapters = ({
           key={value.id}
           to={{
             pathname: `/${bibleId}/passages/${value.id}`,
-            state: state.data.length,
+            state: {
+              length: state.data.length,
+              book: bookId,
+            },
           }}
           bold
           size="1.2rem"
@@ -37,6 +40,11 @@ const Chapters = ({
 
   return (
     <List>
+      {state.error && (
+        <Text size="1.5rem" margin="50vh 0 0 0">
+          Opss something went error
+        </Text>
+      )}
       {state.data === null ? (
         <Text size="1.5rem" margin="50vh 0 0 0">
           loading
@@ -53,11 +61,6 @@ const Chapters = ({
           </Text>
           {listChapters()}
         </React.Fragment>
-      )}
-      {state.error && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
-          Opss something went error
-        </Text>
       )}
     </List>
   );

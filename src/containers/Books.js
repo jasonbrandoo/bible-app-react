@@ -18,7 +18,7 @@ const Books = ({
     return state.data.map(value => (
       <Link
         key={value.id}
-        to={`/${bibleId}/books/${value.id}`}
+        to={{ pathname: `/${bibleId}/books/${value.id}` }}
         size="1.2rem"
         bold="true"
       >
@@ -29,6 +29,11 @@ const Books = ({
 
   return (
     <List>
+      {state.error && (
+        <Text size="1.5rem" margin="50vh 0 0 0">
+          Opss something went error
+        </Text>
+      )}
       {state.data === null ? (
         <Text size="1.5rem" margin="50vh 0 0 0">
           loading
@@ -45,11 +50,6 @@ const Books = ({
           </Text>
           {listBook()}
         </React.Fragment>
-      )}
-      {state.error && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
-          Opss something went error
-        </Text>
       )}
     </List>
   );

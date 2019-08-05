@@ -4,12 +4,14 @@ import styled from 'styled-components';
 
 const Flex = styled.div`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
 `;
 
 const StyledButton = styled.button`
-  padding: 20px;
+  padding: 10px;
   background-color: ${props => props.theme.one};
+  cursor: pointer;
 `;
 
 export const ButtonGroup = ({ children }) => {
@@ -17,7 +19,11 @@ export const ButtonGroup = ({ children }) => {
 };
 
 export const Button = ({ children, ...props }) => {
-  return <StyledButton {...props}>{children}</StyledButton>;
+  return (
+    <StyledButton {...props} type="button">
+      {children}
+    </StyledButton>
+  );
 };
 
 ButtonGroup.propTypes = {
