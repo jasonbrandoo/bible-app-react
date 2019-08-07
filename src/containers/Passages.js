@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
 import Text from '../components/Text';
 import List from '../components/List';
-import Link from '../components/Link';
 import { ButtonGroup, Button } from '../components/Button';
 
 const Passages = ({
@@ -61,11 +60,12 @@ const Passages = ({
           Opss something went error
         </Text>
       )}
-      {!state.data ? (
+      {!state.data && (
         <Text size="1.5rem" margin="50vh 0 0 0">
           loading
         </Text>
-      ) : (
+      )}
+      {state.data && (
         <List content="true">
           {listPassage()}
           <ButtonGroup>

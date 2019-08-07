@@ -6,7 +6,7 @@ import List from '../components/List';
 
 const Version = () => {
   const [state] = useFetch('https://api.scripture.api.bible/v1/bibles');
-
+  console.log(state);
   const ListVersion = () => {
     const { data } = state;
 
@@ -57,11 +57,12 @@ const Version = () => {
           Opss something went error
         </Text>
       )}
-      {state.data === null ? (
+      {state.loading && (
         <Text size="1.5rem" margin="50vh 0 0 0">
           loading
         </Text>
-      ) : (
+      )}
+      {state.data && (
         <React.Fragment>
           <Text
             size="2rem"

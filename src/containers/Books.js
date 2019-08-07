@@ -4,6 +4,7 @@ import useFetch from '../hooks/useFetch';
 import Text from '../components/Text';
 import Link from '../components/Link';
 import List from '../components/List';
+import { BreadcrumbItem } from '../components/Breadcrumb';
 
 const Books = ({
   match: {
@@ -34,12 +35,14 @@ const Books = ({
           Opss something went error
         </Text>
       )}
-      {state.data === null ? (
+      {state.loading && (
         <Text size="1.5rem" margin="50vh 0 0 0">
           loading
         </Text>
-      ) : (
+      )}
+      {state.data && (
         <React.Fragment>
+          <BreadcrumbItem>Books</BreadcrumbItem>
           <Text
             size="2rem"
             margin="6rem auto 1rem auto"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import Breadcrumb from './Breadcrumb';
 
 const Menu = styled.nav`
   background-color: ${props => props.theme.three};
@@ -34,6 +35,7 @@ const Navbar = () => (
     <List>
       <Brand>
         <NavLink to="/">Bible App</NavLink>
+        <Breadcrumb />
       </Brand>
       <Item>About</Item>
     </List>

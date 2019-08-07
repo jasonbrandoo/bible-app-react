@@ -45,11 +45,12 @@ const Chapters = ({
           Opss something went error
         </Text>
       )}
-      {state.data === null ? (
+      {!state.data && (
         <Text size="1.5rem" margin="50vh 0 0 0">
           loading
         </Text>
-      ) : (
+      )}
+      {state.data && (
         <React.Fragment>
           <Text
             size="2rem"
