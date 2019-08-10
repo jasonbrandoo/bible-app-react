@@ -2,11 +2,12 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import ListVersion from './containers/Version';
-import ListBook from './containers/Books';
-import ListChapter from './containers/Chapters';
-import PassagesContainer from './containers/Passages';
+import Version from './containers/Version';
+import Book from './containers/Books';
+import Chapter from './containers/Chapters';
+import Passages from './containers/Passages';
 import Layout from './components/Layout';
+import Books from './containers/Books';
 
 const theme = {
   one: '#222831',
@@ -22,18 +23,10 @@ const App = () => (
         <React.Fragment>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={ListVersion} />
-            <Route exact path="/:bibleId" component={ListBook} />
-            <Route
-              exact
-              path="/:bibleId/books/:bookId"
-              component={ListChapter}
-            />
-            <Route
-              exact
-              path="/:bibleId/passages/:passagesId"
-              component={PassagesContainer}
-            />
+            <Route exact path="/" component={Version} />
+            <Route path="/:bibleId" component={Books} />
+            <Route path="/:bibleId/books/:bookId" component={Chapter} />
+            <Route path="/:bibleId/passages/:passagesId" component={Passages} />
           </Switch>
         </React.Fragment>
       </ThemeProvider>
