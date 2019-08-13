@@ -1,12 +1,9 @@
 import React from 'react';
 import useFetch from '../hooks/useFetch';
-import Text from '../components/Text';
-import Link from '../components/Link';
-import List from '../components/List';
+import { Text, Link, List } from '../components';
 
 const Version = () => {
   const [state] = useFetch('https://api.scripture.api.bible/v1/bibles');
-  console.log(state);
   const ListVersion = () => {
     const { data } = state;
 
@@ -40,7 +37,7 @@ const Version = () => {
         {groupLang[value].map(version => (
           <Link
             key={version.id}
-            to={{ pathname: `${version.id}` }}
+            to={{ pathname: `/version/${version.id}` }}
             size="1.2rem"
           >
             {version.name}

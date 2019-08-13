@@ -1,13 +1,9 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Version from './containers/Version';
-import Book from './containers/Books';
-import Chapter from './containers/Chapters';
-import Passages from './containers/Passages';
-import Layout from './components/Layout';
-import Books from './containers/Books';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import { Layout, Navbar } from './components';
+import Router from './Router/Router';
+import routes from './Router/config';
 
 const theme = {
   one: '#222831',
@@ -23,10 +19,9 @@ const App = () => (
         <React.Fragment>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Version} />
-            <Route path="/:bibleId" component={Books} />
-            <Route path="/:bibleId/books/:bookId" component={Chapter} />
-            <Route path="/:bibleId/passages/:passagesId" component={Passages} />
+            {routes.map(route => (
+              <Router key={route.path} {...route} />
+            ))}
           </Switch>
         </React.Fragment>
       </ThemeProvider>

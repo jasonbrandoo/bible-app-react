@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
-import Text from '../components/Text';
-import List from '../components/List';
-import { ButtonGroup, Button } from '../components/Button';
+import { Text, List, Button } from '../components';
 
 const Passages = ({
   match: {
@@ -16,14 +14,6 @@ const Passages = ({
     `https://api.scripture.api.bible/v1/bibles/${bibleId}/passages/${passagesId}`,
   );
   const [total] = useState([...Array(chapter.length).keys()]);
-  console.log(chapter);
-  // useEffect(() => {
-  //   console.log('cdm');
-  //   const newPassageId = passagesId;
-  //   if (passagesId !== newPassageId) {
-  //     console.log('cdu');
-  //   }
-  // }, [passagesId]);
 
   const listPassage = () => {
     const {
@@ -31,6 +21,7 @@ const Passages = ({
     } = state;
     return (
       <div
+        // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{
           __html: content,
         }}
@@ -40,14 +31,10 @@ const Passages = ({
 
   const chapterList = chap => {
     const id = passagesId.slice(0, 4);
-    const page = [];
-    for (let index = 0; index <= chapter.length; index += 1) {
-      page.push(index);
-    }
     refetch(
       `https://api.scripture.api.bible/v1/bibles/${bibleId}/passages/${id}${chap}`,
     );
-    push(`/${bibleId}/passages/${id}${chap}`, {
+    push(`/version/${bibleId}/passages/${id}${chap}`, {
       length: chapter.length,
       book: chapter.book,
     });
@@ -68,9 +55,9 @@ const Passages = ({
       {state.data && (
         <List content="true">
           {listPassage()}
-          <ButtonGroup>
+          <List group>
             {total.map((val, index) => {
-              if (index) {
+              if (index === 0) {
                 return null;
               }
               return (
@@ -79,7 +66,7 @@ const Passages = ({
                 </Button>
               );
             })}
-          </ButtonGroup>
+          </List>
         </List>
       )}
     </List>

@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
-import Text from '../components/Text';
-import Link from '../components/Link';
-import List from '../components/List';
+import { Text, Link, List } from '../components';
 
 const Books = ({
   match: {
@@ -18,7 +16,7 @@ const Books = ({
     return state.data.map(value => (
       <Link
         key={value.id}
-        to={{ pathname: `/${bibleId}/books/${value.id}` }}
+        to={{ pathname: `/version/${bibleId}/books/${value.id}` }}
         size="1.2rem"
         bold="true"
       >

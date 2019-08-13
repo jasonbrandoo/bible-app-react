@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
-import Text from '../components/Text';
-import Link from '../components/Link';
-import List from '../components/List';
+import { Text, Link, List } from '../components';
 
 const Chapters = ({
   match: {
@@ -23,7 +21,7 @@ const Chapters = ({
         <Link
           key={value.id}
           to={{
-            pathname: `/${bibleId}/passages/${value.id}`,
+            pathname: `/version/${bibleId}/passages/${value.id}`,
             state: {
               length: state.data.length,
               book: bookId,
