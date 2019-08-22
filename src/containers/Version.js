@@ -31,7 +31,7 @@ const Version = () => {
     return Object.keys(groupLang).map(value => (
       // <Link to={`/${value.id}`}>{value.name}</Link>
       <React.Fragment key={value}>
-        <Text key={value} size="1.5rem" bold>
+        <Text key={value} fontSize={5}>
           {value}
         </Text>
         {groupLang[value].map(version => (

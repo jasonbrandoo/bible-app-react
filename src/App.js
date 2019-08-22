@@ -4,18 +4,12 @@ import { BrowserRouter, Switch } from 'react-router-dom';
 import { Layout, Navbar } from './components';
 import Router from './Router/Router';
 import routes from './Router/config';
-
-const theme = {
-  one: '#222831',
-  two: '#393e46',
-  three: '#00adb5',
-  four: '#eeeeee',
-};
+import theme from './theme';
 
 const App = () => (
-  <Layout>
+  <ThemeProvider theme={theme}>
     <BrowserRouter>
-      <ThemeProvider theme={theme}>
+      <Layout>
         <React.Fragment>
           <Navbar />
           <Switch>
@@ -24,9 +18,9 @@ const App = () => (
             ))}
           </Switch>
         </React.Fragment>
-      </ThemeProvider>
+      </Layout>
     </BrowserRouter>
-  </Layout>
+  </ThemeProvider>
 );
 
 export default App;
