@@ -53,7 +53,7 @@ const Navbar = () => (
         fontSize={4}
         ml="auto"
         color="four"
-        href="https://github.com/jasonbrandoo/bible-for-everyone"
+        href="https://github.com/jasonbrandoo/bible-app-react"
       >
         github
       </Github>
