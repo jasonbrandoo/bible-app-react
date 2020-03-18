@@ -1,9 +1,17 @@
+# React Bible App
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+## See a Demo!
+Check out a live demo of the bible app. It is built with react, and the demo itself is hosted on netlify.
+
+https://bibleapp.netlify.com/
+
+## Help with Performing Common Tasks (In a typical Create React App)
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
-## Table of Contents
+### Table of Contents for Performing Common Tasks 
 
 - [Updating to New Releases](#updating-to-new-releases)
 - [Sending Feedback](#sending-feedback)
