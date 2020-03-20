@@ -22,27 +22,20 @@ body {
   padding: 0;
 }
 
-/*  */
+/* Passages  */
 .bible-content {
   text-align: justify;
   width: 50%;
   margin: 6rem auto auto auto;
 }
 
-p {
+.p {
   margin: 0;
   font-size: 1.2rem;
 }
 
-p[class*='s'] {
-  margin: 1rem 0;
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-
 p:last-of-type {
-  margin-bottom: 5rem;
+  margin-bottom: 1rem;
 }
 
 span[data-number] {

@@ -1,29 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { color, space, border, layout } from 'styled-system';
 
-const StyledButton = styled.button`
-  margin: 5px;
-  background-color: transparent;
-  border: transparent;
-  color: ${props => props.theme.one}
-  font-weight: bold;
-  cursor: pointer;
-  &:hover {
-    color: ${props => props.theme.three}
-  }
+const Button = styled.button`
+  ${color}
+  ${space}
+  ${border}
+  ${layout}
 `;
-
-const Button = ({ children, ...props }) => {
-  return (
-    <StyledButton {...props} type="button">
-      {children}
-    </StyledButton>
-  );
-};
-
-Button.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default Button;

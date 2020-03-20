@@ -1,24 +1,25 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter, Switch } from 'react-router-dom';
-import { Layout, Navbar } from './components';
-import Router from './Router/Router';
-import routes from './Router/config';
+import Box from './components/Box';
+import Navbar from './components/Navbar';
+import Router from './router';
+import routes from './router/config';
 import theme from './theme';
 
 const App = () => (
   <ThemeProvider theme={theme}>
     <BrowserRouter>
-      <Layout>
-        <React.Fragment>
+      <Box>
+        <>
           <Navbar />
           <Switch>
             {routes.map(route => (
               <Router key={route.path} {...route} />
             ))}
           </Switch>
-        </React.Fragment>
-      </Layout>
+        </>
+      </Box>
     </BrowserRouter>
   </ThemeProvider>
 );

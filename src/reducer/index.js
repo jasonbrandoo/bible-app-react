@@ -5,9 +5,9 @@ export const ERROR = 'ERROR';
 
 export const initialState = {
   url: '',
-  data: null,
   loading: false,
   error: false,
+  data: null,
 };
 
 export const reducer = (state, { type, payload }) => {
@@ -27,7 +27,7 @@ export const reducer = (state, { type, payload }) => {
     case REFETCH_API:
       return {
         ...state,
-        data: payload.data,
+        data: null,
         loading: true,
       };
     case ERROR:

@@ -1,10 +1,13 @@
 import React from 'react';
 import useFetch from '../hooks/useFetch';
-import { Text, Link, List } from '../components';
+import Box from '../components/Box';
+import Link from '../components/Link';
+import Text from '../components/Text';
 
 const Version = () => {
   const [state] = useFetch('https://api.scripture.api.bible/v1/bibles');
-  const ListVersion = () => {
+
+  const listVersion = () => {
     const { data } = state;
 
     const sortLang = data.sort((a, b) => {
@@ -29,50 +32,52 @@ const Version = () => {
     }, {});
 
     return Object.keys(groupLang).map(value => (
-      // <Link to={`/${value.id}`}>{value.name}</Link>
-      <React.Fragment key={value}>
-        <Text key={value} fontSize={5}>
+      <Box
+        my={2}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        key={value}
+      >
+        <Text textAlign="center" fontWeight="bold" fontSize={4}>
           {value}
         </Text>
         {groupLang[value].map(version => (
           <Link
             key={version.id}
             to={{ pathname: `/version/${version.id}` }}
-            size="1.2rem"
+            fontSize={3}
+            textDecoration="none"
+            color="primary"
           >
             {version.name}
           </Link>
         ))}
-      </React.Fragment>
+      </Box>
     ));
   };
 
   return (
-    <List>
+    <Box display="flex" flexDirection="column" alignItems="center" pt={5}>
       {state.error && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
+        <Text fontSize={3} my={2}>
           Opss something went error
         </Text>
       )}
       {state.loading && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
+        <Text fontSize={3} my={2}>
           loading
         </Text>
       )}
       {state.data && (
-        <React.Fragment>
-          <Text
-            size="2rem"
-            margin="6rem auto 1rem auto"
-            padding="1rem"
-            spacing="5px"
-          >
+        <>
+          <Text fontSize={4} my={2}>
             Available version
           </Text>
-          {ListVersion()}
-        </React.Fragment>
+          {listVersion()}
+        </>
       )}
-    </List>
+    </Box>
   );
 };
 

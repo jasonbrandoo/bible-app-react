@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
-import { Text, Link, List } from '../components';
+import Box from '../components/Box';
+import Link from '../components/Link';
+import Text from '../components/Text';
 
 const Chapters = ({
   match: {
@@ -27,8 +29,10 @@ const Chapters = ({
               book: bookId,
             },
           }}
-          bold
-          size="1.2rem"
+          fontSize={4}
+          fontWeight="bold"
+          textDecoration="none"
+          color="primary"
         >
           {value.reference}
         </Link>
@@ -37,31 +41,26 @@ const Chapters = ({
   };
 
   return (
-    <List>
+    <Box display="flex" flexDirection="column" alignItems="center" pt={5}>
       {state.error && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
+        <Text fontSize={3} my={2}>
           Opss something went error
         </Text>
       )}
       {!state.data && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
+        <Text fontSize={3} my={2}>
           loading
         </Text>
       )}
       {state.data && (
-        <React.Fragment>
-          <Text
-            size="2rem"
-            margin="6rem auto 1rem auto"
-            padding="1rem"
-            spacing="5px"
-          >
+        <>
+          <Text fontSize={3} my={2}>
             Chapters
           </Text>
           {listChapters()}
-        </React.Fragment>
+        </>
       )}
-    </List>
+    </Box>
   );
 };
 

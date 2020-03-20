@@ -38,7 +38,7 @@ const useFetch = url => {
   }, [url]);
 
   const refetch = () => {
-    dispatch({ type: REFETCH_API, payload: url });
+    dispatch({ type: REFETCH_API });
   };
 
   return [state, refetch];

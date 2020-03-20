@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import useFetch from '../hooks/useFetch';
-import { Text, List, Button } from '../components';
+import Box from '../components/Box';
+import Button from '../components/Button';
+import Text from '../components/Text';
 
 const Passages = ({
   match: {
     params: { bibleId, passagesId },
+    isExact,
   },
   location: { state: chapter },
   history: { push },
@@ -31,9 +34,7 @@ const Passages = ({
 
   const chapterList = chap => {
     const id = passagesId.slice(0, 4);
-    refetch(
-      `https://api.scripture.api.bible/v1/bibles/${bibleId}/passages/${id}${chap}`,
-    );
+    refetch();
     push(`/version/${bibleId}/passages/${id}${chap}`, {
       length: chapter.length,
       book: chapter.book,
@@ -41,35 +42,58 @@ const Passages = ({
   };
 
   return (
-    <List>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      pt={5}
+      mx="auto"
+      my={0}
+      width="60%"
+    >
       {state.error && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
+        <Text fontSize={3} my={2}>
           Opss something went error
         </Text>
       )}
-      {!state.data && (
-        <Text size="1.5rem" margin="50vh 0 0 0">
+      {state.loading && (
+        <Text fontSize={3} my={2}>
           loading
         </Text>
       )}
       {state.data && (
-        <List content="true">
+        <>
           {listPassage()}
-          <List group>
+          <Box
+            display="flex"
+            flexDirection="row"
+            flexWrap="wrap"
+            width="100%"
+            mb={3}
+          >
             {total.map((val, index) => {
               if (index === 0) {
                 return null;
               }
               return (
-                <Button key={val} onClick={() => chapterList(val)}>
+                <Button
+                  key={val}
+                  bg="transparent"
+                  color="primary"
+                  borderColor="primary"
+                  borderRadius="0.25rem"
+                  m={1}
+                  width="2rem"
+                  onClick={() => chapterList(val)}
+                >
                   {val}
                 </Button>
               );
             })}
-          </List>
-        </List>
+          </Box>
+        </>
       )}
-    </List>
+    </Box>
   );
 };
 

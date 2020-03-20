@@ -1,4 +1,7 @@
-import { Version, Books, Chapters, Passages } from '../containers';
+import Version from '../containers/Version';
+import Books from '../containers/Books';
+import Chapters from '../containers/Chapters';
+import Passages from '../containers/Passages';
 
 const routes = [
   {
