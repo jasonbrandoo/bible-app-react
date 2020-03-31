@@ -24,6 +24,8 @@
   "rules": {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
+    "react/forbid-prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
   }

@@ -45,7 +45,12 @@ const Version = () => {
         {groupLang[value].map(version => (
           <Link
             key={version.id}
-            to={{ pathname: `/version/${version.id}` }}
+            to={{
+              pathname: `/version/${version.id}`,
+              state: {
+                version: version.name,
+              },
+            }}
             fontSize={3}
             textDecoration="none"
             color="primary"
