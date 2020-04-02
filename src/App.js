@@ -1,5 +1,5 @@
 import React from 'react';
-import { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'theme-ui';
 import { BrowserRouter, Switch } from 'react-router-dom';
 import Box from './components/Box';
 import Navbar from './components/Navbar';

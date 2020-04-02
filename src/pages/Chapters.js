@@ -34,7 +34,7 @@ const Chapters = ({
               name,
             },
           }}
-          fontSize={4}
+          fontSize={[1, 4]}
           fontWeight="bold"
           textDecoration="none"
           color="primary"
@@ -47,18 +47,7 @@ const Chapters = ({
 
   return (
     <>
-      <Box display="flex" pt={5}>
-        <Link
-          to={{ pathname: '/' }}
-          pl={3}
-          pr={1}
-          fontSize={4}
-          textDecoration="none"
-          fontWeight="bold"
-          color="black"
-        >
-          Version /
-        </Link>
+      <Box display="flex" pt="5rem">
         <Link
           to={{
             pathname: `/version/${bibleId}`,
@@ -66,34 +55,24 @@ const Chapters = ({
               version,
             },
           }}
+          pl={3}
           pr={1}
-          fontSize={4}
+          fontSize={[1, 4]}
           textDecoration="none"
-          fontWeight="bold"
           color="black"
         >
           {`${version} /`}
         </Link>
-        <Text fontSize={4} fontWeight="bold">
-          {name}
-        </Text>
+        <Text fontSize={[1, 4]}>{name}</Text>
       </Box>
       <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
         {state.error && (
-          <Text fontSize={3} my={2}>
-            Opss something went error
-          </Text>
+          <Text fontSize={[1, 3]}>Opss something went error</Text>
         )}
-        {!state.data && (
-          <Text fontSize={3} my={2}>
-            loading
-          </Text>
-        )}
+        {!state.data && <Text fontSize={[1, 3]}>loading</Text>}
         {state.data && (
           <>
-            <Text fontSize={3} my={2}>
-              Chapters
-            </Text>
+            <Text fontSize={[1, 3]}>Chapters</Text>
             {listChapters()}
           </>
         )}

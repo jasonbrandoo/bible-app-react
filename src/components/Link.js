@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 import { typography, color, system, space } from 'styled-system';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -17,6 +17,9 @@ const Link = styled(NavigationLink)`
   ${system({
     textDecoration: true,
   })}
+  &:hover {
+    color: ${props => props.theme.colors.secondary};
+  }
 `;
 
 NavigationLink.propTypes = {

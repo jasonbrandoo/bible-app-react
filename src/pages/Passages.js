@@ -45,18 +45,7 @@ const Passages = ({
 
   return (
     <>
-      <Box display="flex" pt={5}>
-        <Link
-          to={{ pathname: '/' }}
-          pl={3}
-          pr={1}
-          fontSize={4}
-          textDecoration="none"
-          fontWeight="bold"
-          color="black"
-        >
-          Version /
-        </Link>
+      <Box display="flex" pt="5rem">
         <Link
           to={{
             pathname: `/version/${bibleId}`,
@@ -64,11 +53,11 @@ const Passages = ({
               version: chapter.version,
             },
           }}
+          pl={3}
           pr={1}
-          fontSize={4}
+          fontSize={[1, 4]}
           textDecoration="none"
-          fontWeight="bold"
-          color="black"
+          color="text"
         >
           {`${chapter.version} /`}
         </Link>
@@ -81,16 +70,13 @@ const Passages = ({
             },
           }}
           pr={1}
-          fontSize={4}
+          fontSize={[1, 4]}
           textDecoration="none"
-          fontWeight="bold"
-          color="black"
+          color="text"
         >
           {`${chapter.name} /`}
         </Link>
-        <Text fontSize={4} fontWeight="bold">
-          {passagesId.slice(4, 5)}
-        </Text>
+        <Text fontSize={[1, 4]}>{passagesId.slice(4, 5)}</Text>
       </Box>
       <Box
         display="flex"
@@ -99,18 +85,12 @@ const Passages = ({
         pt={2}
         mx="auto"
         my={0}
-        width="60%"
+        width="75%"
       >
         {state.error && (
-          <Text fontSize={3} my={2}>
-            Opss something went error
-          </Text>
+          <Text fontSize={[1, 3]}>Opss something went error</Text>
         )}
-        {state.loading && (
-          <Text fontSize={3} my={2}>
-            loading
-          </Text>
-        )}
+        {state.loading && <Text fontSize={[1, 3]}>loading</Text>}
         {state.data && (
           <>
             {listPassage()}

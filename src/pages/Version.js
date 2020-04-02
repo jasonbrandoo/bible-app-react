@@ -39,7 +39,7 @@ const Version = () => {
         alignItems="center"
         key={value}
       >
-        <Text textAlign="center" fontWeight="bold" fontSize={4}>
+        <Text textAlign="center" fontWeight="bold" fontSize={[2, 4]}>
           {value}
         </Text>
         {groupLang[value].map(version => (
@@ -51,7 +51,7 @@ const Version = () => {
                 version: version.name,
               },
             }}
-            fontSize={3}
+            fontSize={[1, 3]}
             textDecoration="none"
             color="primary"
           >
@@ -63,22 +63,12 @@ const Version = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" pt={5}>
-      {state.error && (
-        <Text fontSize={3} my={2}>
-          Opss something went error
-        </Text>
-      )}
-      {state.loading && (
-        <Text fontSize={3} my={2}>
-          loading
-        </Text>
-      )}
+    <Box display="flex" flexDirection="column" alignItems="center" pt={6}>
+      {state.error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
+      {state.loading && <Text fontSize={[1, 3]}>loading</Text>}
       {state.data && (
         <>
-          <Text fontSize={4} my={2}>
-            Available version
-          </Text>
+          <Text fontSize={[1, 3]}>Available version</Text>
           {listVersion()}
         </>
       )}
