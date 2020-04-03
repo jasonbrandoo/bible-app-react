@@ -23,13 +23,16 @@ const Navbar = () => {
           color="text"
           backgroundColor="lightgray"
           ml="auto"
+          sx={{
+            fontSize: '10px',
+          }}
           onClick={() => {
             const index = modes.indexOf(colorMode);
             const next = modes[(index + 1) % modes.length];
             setColorMode(next);
           }}
         >
-          {colorMode === 'default' ? 'light' : colorMode}
+          {colorMode === 'default' ? 'LIGHT' : colorMode.toUpperCase()}
         </Button>
       </Box>
     </Box>

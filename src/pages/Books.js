@@ -4,12 +4,14 @@ import useFetch from '../hooks/useFetch';
 import Box from '../components/Box';
 import Link from '../components/Link';
 import Text from '../components/Text';
+import { BreadCrumb, BreadCrumbItem } from '../components/BreadCrumb';
 
 const Books = ({
   match: {
     params: { bibleId },
   },
   location: {
+    pathname,
     state: { version },
   },
 }) => {
@@ -25,7 +27,7 @@ const Books = ({
           pathname: `/version/${bibleId}/books/${value.id}`,
           state: {
             version,
-            name: value.name,
+            book: value.name,
           },
         }}
         fontSize={[1, 4]}
@@ -40,19 +42,12 @@ const Books = ({
 
   return (
     <>
-      <Box display="flex" pt="5rem">
-        <Link
-          to={{ pathname: '/' }}
-          pl={3}
-          pr={1}
-          fontSize={[1, 4]}
-          textDecoration="none"
-          color="text"
-        >
-          Version /
-        </Link>
-        <Text fontSize={[1, 4]}>{version}</Text>
-      </Box>
+      <BreadCrumb>
+        <BreadCrumbItem to={{ pathname: '/' }}>Home</BreadCrumbItem>
+        <BreadCrumbItem to={{ pathname, state: { version } }}>
+          {version}
+        </BreadCrumbItem>
+      </BreadCrumb>
       <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
         {state.error && (
           <Text fontSize={[1, 3]}>Opss something went error</Text>

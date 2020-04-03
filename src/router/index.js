@@ -17,7 +17,7 @@ const Router = ({ path, main: MainComponent, exact }) => {
 
 Router.defaultProps = {
   main: PropTypes.elementType,
-  exact: true || false,
+  exact: false,
 };
 
 Router.propTypes = {

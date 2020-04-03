@@ -4,13 +4,13 @@ import useFetch from '../hooks/useFetch';
 import Box from '../components/Box';
 import Button from '../components/Button';
 import Text from '../components/Text';
-import Link from '../components/Link';
+import { BreadCrumb, BreadCrumbItem } from '../components/BreadCrumb';
 
 const Passages = ({
   match: {
     params: { bibleId, passagesId },
   },
-  location: { state: chapter },
+  location: { pathname, state: chapter },
   history: { push },
 }) => {
   const [state, refetch] = useFetch(
@@ -45,39 +45,41 @@ const Passages = ({
 
   return (
     <>
-      <Box display="flex" pt="5rem">
-        <Link
+      <BreadCrumb>
+        <BreadCrumbItem
           to={{
             pathname: `/version/${bibleId}`,
             state: {
               version: chapter.version,
             },
           }}
-          pl={3}
-          pr={1}
-          fontSize={[1, 4]}
-          textDecoration="none"
-          color="text"
         >
-          {`${chapter.version} /`}
-        </Link>
-        <Link
+          {chapter.version}
+        </BreadCrumbItem>
+        <BreadCrumbItem
           to={{
-            pathname: `/version/${bibleId}/books/${chapter.book}`,
+            pathname: `/version/${bibleId}/books/${chapter.bookId}`,
             state: {
               version: chapter.version,
-              name: chapter.name,
+              book: chapter.book,
             },
           }}
-          pr={1}
-          fontSize={[1, 4]}
-          textDecoration="none"
-          color="text"
         >
-          {`${chapter.name} /`}
-        </Link>
-        <Text fontSize={[1, 4]}>{passagesId.slice(4, 5)}</Text>
-      </Box>
+          {chapter.book}
+        </BreadCrumbItem>
+        <BreadCrumbItem
+          to={{
+            pathname,
+            state: {
+              version: chapter.version,
+              book: chapter.book,
+              length: chapter.length,
+            },
+          }}
+        >
+          {passagesId.slice(4, 5)}
+        </BreadCrumbItem>
+      </BreadCrumb>
       <Box
         display="flex"
         flexDirection="column"

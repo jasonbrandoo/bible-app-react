@@ -8,24 +8,29 @@ const routes = [
     path: '/',
     main: Version,
     exact: true,
+    label: 'Home',
   },
   {
     path: '/version/:bibleId',
     main: Books,
     exact: true,
+    label: 'Books',
   },
   {
     path: '/version/:bibleId/books/:bookId',
     main: Chapters,
     exact: true,
+    label: 'Chapters',
   },
   {
     path: '/version/:bibleId/passages/:passagesId',
     main: Passages,
     exact: true,
+    label: 'Passages',
   },
   {
     path: '/:noMatch',
+    label: 'Not Found',
   },
 ];
 

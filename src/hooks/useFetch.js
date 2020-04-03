@@ -13,6 +13,8 @@ const useFetch = url => {
 
   useEffect(() => {
     let cancel = false;
+    const controller = new AbortController();
+    const { signal } = controller;
 
     if (!cancel) {
       const fetchVersion = async () => {
@@ -22,17 +24,23 @@ const useFetch = url => {
             headers: {
               'api-key': process.env.REACT_APP_API_KEY,
             },
+            signal,
           });
           const data = await res.json();
           dispatch({ type: SUCCESS, payload: data });
         } catch (error) {
-          dispatch({ type: ERROR });
+          if (error.name === 'AbortError') {
+            dispatch({ type: ERROR });
+          } else {
+            dispatch({ type: ERROR });
+          }
         }
       };
       fetchVersion();
     }
 
     return () => {
+      controller.abort();
       cancel = true;
     };
   }, [url]);

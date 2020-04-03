@@ -4,13 +4,15 @@ import useFetch from '../hooks/useFetch';
 import Box from '../components/Box';
 import Link from '../components/Link';
 import Text from '../components/Text';
+import { BreadCrumb, BreadCrumbItem } from '../components/BreadCrumb';
 
 const Chapters = ({
   match: {
     params: { bibleId, bookId },
   },
   location: {
-    state: { version, name },
+    pathname,
+    state: { version, book },
   },
 }) => {
   const [state] = useFetch(
@@ -29,9 +31,9 @@ const Chapters = ({
             pathname: `/version/${bibleId}/passages/${value.id}`,
             state: {
               length: state.data.length,
-              book: bookId,
+              bookId,
               version,
-              name,
+              book,
             },
           }}
           fontSize={[1, 4]}
@@ -47,24 +49,17 @@ const Chapters = ({
 
   return (
     <>
-      <Box display="flex" pt="5rem">
-        <Link
-          to={{
-            pathname: `/version/${bibleId}`,
-            state: {
-              version,
-            },
-          }}
-          pl={3}
-          pr={1}
-          fontSize={[1, 4]}
-          textDecoration="none"
-          color="black"
+      <BreadCrumb>
+        <BreadCrumbItem to={{ pathname: '/' }}>Home</BreadCrumbItem>
+        <BreadCrumbItem
+          to={{ pathname: `/version/${bibleId}`, state: { version } }}
         >
-          {`${version} /`}
-        </Link>
-        <Text fontSize={[1, 4]}>{name}</Text>
-      </Box>
+          {version}
+        </BreadCrumbItem>
+        <BreadCrumbItem to={{ pathname, state: { version, book } }}>
+          {book}
+        </BreadCrumbItem>
+      </BreadCrumb>
       <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
         {state.error && (
           <Text fontSize={[1, 3]}>Opss something went error</Text>
