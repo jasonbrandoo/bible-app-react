@@ -13,7 +13,7 @@ const Passages = ({
   location: { pathname, state: chapter },
   history: { push },
 }) => {
-  const [state, refetch] = useFetch(
+  const { data, error } = useFetch(
     `https://api.scripture.api.bible/v1/bibles/${bibleId}/passages/${passagesId}`,
   );
   const [total] = useState([...Array(chapter.length).keys()]);
@@ -21,7 +21,7 @@ const Passages = ({
   const listPassage = () => {
     const {
       data: { content },
-    } = state;
+    } = data;
     return (
       <div
         // eslint-disable-next-line react/no-danger
@@ -34,9 +34,10 @@ const Passages = ({
 
   const chapterList = chap => {
     const id = passagesId.slice(0, 4);
-    refetch();
+    // refetch();
     push(`/version/${bibleId}/passages/${id}${chap}`, {
       length: chapter.length,
+      bookId: chapter.bookId,
       book: chapter.book,
       name: chapter.name,
       version: chapter.version,
@@ -89,11 +90,9 @@ const Passages = ({
         my={0}
         width="75%"
       >
-        {state.error && (
-          <Text fontSize={[1, 3]}>Opss something went error</Text>
-        )}
-        {state.loading && <Text fontSize={[1, 3]}>loading</Text>}
-        {state.data && (
+        {error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
+        {!data && <Text fontSize={[1, 3]}>loading</Text>}
+        {data && (
           <>
             {listPassage()}
             <Box

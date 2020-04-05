@@ -5,12 +5,10 @@ import Link from '../components/Link';
 import Text from '../components/Text';
 
 const Version = () => {
-  const [state] = useFetch('https://api.scripture.api.bible/v1/bibles');
+  const { data, error } = useFetch('https://api.scripture.api.bible/v1/bibles');
 
   const listVersion = () => {
-    const { data } = state;
-
-    const sortLang = data.sort((a, b) => {
+    const sortLang = data.data.sort((a, b) => {
       const A = a.language.name.toUpperCase();
       const B = b.language.name.toUpperCase();
       if (A < B) {
@@ -64,9 +62,9 @@ const Version = () => {
 
   return (
     <Box display="flex" flexDirection="column" alignItems="center" pt={6}>
-      {state.error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
-      {state.loading && <Text fontSize={[1, 3]}>loading</Text>}
-      {state.data && (
+      {error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
+      {!data && <Text fontSize={[1, 3]}>loading</Text>}
+      {data && (
         <>
           <Text fontSize={[1, 3]}>Available version</Text>
           {listVersion()}

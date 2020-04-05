@@ -15,12 +15,12 @@ const Chapters = ({
     state: { version, book },
   },
 }) => {
-  const [state] = useFetch(
+  const { data, error } = useFetch(
     `https://api.scripture.api.bible/v1/bibles/${bibleId}/books/${bookId}/chapters`,
   );
 
   const listChapters = () => {
-    return state.data.map((value, index) => {
+    return data.data.map((value, index) => {
       if (index === 0) {
         return null;
       }
@@ -30,7 +30,7 @@ const Chapters = ({
           to={{
             pathname: `/version/${bibleId}/passages/${value.id}`,
             state: {
-              length: state.data.length,
+              length: data.data.length,
               bookId,
               version,
               book,
@@ -61,11 +61,9 @@ const Chapters = ({
         </BreadCrumbItem>
       </BreadCrumb>
       <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
-        {state.error && (
-          <Text fontSize={[1, 3]}>Opss something went error</Text>
-        )}
-        {!state.data && <Text fontSize={[1, 3]}>loading</Text>}
-        {state.data && (
+        {error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
+        {!data && <Text fontSize={[1, 3]}>loading</Text>}
+        {data && (
           <>
             <Text fontSize={[1, 3]}>Chapters</Text>
             {listChapters()}

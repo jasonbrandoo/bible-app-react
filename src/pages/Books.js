@@ -15,12 +15,12 @@ const Books = ({
     state: { version },
   },
 }) => {
-  const [state] = useFetch(
+  const { data, error } = useFetch(
     `https://api.scripture.api.bible/v1/bibles/${bibleId}/books`,
   );
 
   const listBook = () => {
-    return state.data.map(value => (
+    return data.data.map(value => (
       <Link
         key={value.id}
         to={{
@@ -49,11 +49,9 @@ const Books = ({
         </BreadCrumbItem>
       </BreadCrumb>
       <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
-        {state.error && (
-          <Text fontSize={[1, 3]}>Opss something went error</Text>
-        )}
-        {state.loading && <Text fontSize={[1, 3]}>loading</Text>}
-        {state.data && (
+        {error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
+        {!data && <Text fontSize={[1, 3]}>loading</Text>}
+        {data && (
           <>
             <Text fontSize={[1, 3]}>Available Books</Text>
             {listBook()}
