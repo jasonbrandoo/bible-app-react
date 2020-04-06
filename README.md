@@ -13,10 +13,10 @@ https://bibleapp.netlify.com/
 Make sure you have git and node installed on your machine
 
 ```bash
-~ git clone https://github.com/jasonbrandoo/bible-app-react.git
-~ cd bible-app-react
-~ npm install
-~ npm start
+$ git clone https://github.com/jasonbrandoo/bible-app-react.git
+$ cd bible-app-react
+$ npm install
+$ npm start
 ```
 
 ## How to contribute
@@ -36,3 +36,11 @@ Make sure you have git and node installed on your machine
 #### Todo
 
 Help me make better documentation :smile:
+
+#### Tech Stack
+
+- [API.Bible](https://scripture.api.bible/)
+- [emotion](https://emotion.sh/)
+- [styled-system](https://styled-system.com/)
+- [SWR](https://swr.now.sh/)
+- [theme-ui](https://theme-ui.com/)
