@@ -17,7 +17,7 @@ const BreadCrumbSeparator = ({ children }) => (
 );
 
 const BreadCrumbItem = ({ children, to }) => (
-  <Link to={to} fontSize={[1, 4]} textDecoration="none" color="text">
+  <Link to={to} fontSize={[1, 4]} color="text">
     {children}
   </Link>
 );
@@ -33,6 +33,7 @@ const BreadCrumb = ({ children }) => {
         if (notLast) {
           acc.push(
             child,
+            // eslint-disable-next-line react/no-array-index-key
             <BreadCrumbSeparator key={`BreadCrumbIndex${index}`}>
               /
             </BreadCrumbSeparator>,

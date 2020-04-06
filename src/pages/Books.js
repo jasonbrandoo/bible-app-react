@@ -40,6 +40,32 @@ const Books = ({
     ));
   };
 
+  let content;
+
+  if (error) {
+    content = (
+      <Text fontSize={[1, 3]} fontWeight="bold">
+        Opss something went error
+      </Text>
+    );
+  }
+  if (!data) {
+    content = (
+      <Text fontSize={[1, 3]} fontWeight="bold">
+        loading
+      </Text>
+    );
+  } else {
+    content = (
+      <>
+        <Text fontSize={[1, 3]} fontWeight="bold">
+          Available Books
+        </Text>
+        {listBook()}
+      </>
+    );
+  }
+
   return (
     <>
       <BreadCrumb>
@@ -49,14 +75,7 @@ const Books = ({
         </BreadCrumbItem>
       </BreadCrumb>
       <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
-        {error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
-        {!data && <Text fontSize={[1, 3]}>loading</Text>}
-        {data && (
-          <>
-            <Text fontSize={[1, 3]}>Available Books</Text>
-            {listBook()}
-          </>
-        )}
+        {content}
       </Box>
     </>
   );

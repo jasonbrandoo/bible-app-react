@@ -44,6 +44,55 @@ const Passages = ({
     });
   };
 
+  let content;
+
+  if (error) {
+    content = (
+      <Text fontSize={[1, 3]} fontWeight="bold">
+        Opss something went error
+      </Text>
+    );
+  }
+  if (!data) {
+    content = (
+      <Text fontSize={[1, 3]} fontWeight="bold">
+        loading
+      </Text>
+    );
+  } else {
+    content = (
+      <>
+        {listPassage()}
+        <Box
+          display="flex"
+          flexDirection="row"
+          flexWrap="wrap"
+          width="100%"
+          mb={3}
+        >
+          {total.map((val, index) => {
+            if (index === 0) {
+              return null;
+            }
+            return (
+              <Button
+                key={val}
+                bg="transparent"
+                color="text"
+                borderColor="text"
+                borderRadius="0.25rem"
+                m={1}
+                width="2rem"
+                onClick={() => chapterList(val)}
+              >
+                {val}
+              </Button>
+            );
+          })}
+        </Box>
+      </>
+    );
+  }
   return (
     <>
       <BreadCrumb>
@@ -73,6 +122,7 @@ const Passages = ({
             pathname,
             state: {
               version: chapter.version,
+              bookId: chapter.bookId,
               book: chapter.book,
               length: chapter.length,
             },
@@ -90,40 +140,7 @@ const Passages = ({
         my={0}
         width="75%"
       >
-        {error && <Text fontSize={[1, 3]}>Opss something went error</Text>}
-        {!data && <Text fontSize={[1, 3]}>loading</Text>}
-        {data && (
-          <>
-            {listPassage()}
-            <Box
-              display="flex"
-              flexDirection="row"
-              flexWrap="wrap"
-              width="100%"
-              mb={3}
-            >
-              {total.map((val, index) => {
-                if (index === 0) {
-                  return null;
-                }
-                return (
-                  <Button
-                    key={val}
-                    bg="transparent"
-                    color="primary"
-                    borderColor="primary"
-                    borderRadius="0.25rem"
-                    m={1}
-                    width="2rem"
-                    onClick={() => chapterList(val)}
-                  >
-                    {val}
-                  </Button>
-                );
-              })}
-            </Box>
-          </>
-        )}
+        {content}
       </Box>
     </>
   );
