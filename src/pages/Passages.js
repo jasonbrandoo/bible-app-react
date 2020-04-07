@@ -94,6 +94,7 @@ const Passages = ({
   return (
     <>
       <BreadCrumb>
+        <BreadCrumbItem to={{ pathname: '/' }}>Home</BreadCrumbItem>
         <BreadCrumbItem
           to={{
             pathname: `/version/${bibleId}`,

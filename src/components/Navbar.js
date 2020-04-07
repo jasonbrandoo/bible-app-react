@@ -17,7 +17,7 @@ const Navbar = () => {
           fontWeight="bold"
           to={{ pathname: '/' }}
         >
-          BIBLE
+          Bible
         </Link>
         <Button
           color="text"

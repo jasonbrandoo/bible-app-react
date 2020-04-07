@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { typography, color, system, space } from 'styled-system';
+import { layout, typography, color, system, space } from 'styled-system';
 import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
@@ -14,6 +14,7 @@ const Link = styled(NavigationLink)`
   ${color}
   ${space}
   ${typography}
+  ${layout}
   ${system({
     textDecoration: true,
   })}

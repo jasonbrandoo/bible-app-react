@@ -33,7 +33,9 @@ const Books = ({
         fontSize={[1, 4]}
         letterSpacing={1}
         textDecoration="none"
+        textAlign="center"
         color="primary"
+        width="100%"
       >
         {value.name}
       </Link>
@@ -72,7 +74,13 @@ const Books = ({
           {version}
         </BreadCrumbItem>
       </BreadCrumb>
-      <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        width="100%"
+        pt={2}
+      >
         {content}
       </Box>
     </>

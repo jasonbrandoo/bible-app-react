@@ -3,6 +3,7 @@ import useFetch from '../hooks/useFetch';
 import Box from '../components/Box';
 import Link from '../components/Link';
 import Text from '../components/Text';
+import { BreadCrumb, BreadCrumbItem } from '../components/BreadCrumb';
 
 const Version = () => {
   const { data, error } = useFetch('https://api.scripture.api.bible/v1/bibles');
@@ -36,6 +37,7 @@ const Version = () => {
         flexDirection="column"
         alignItems="center"
         key={value}
+        width="100%"
       >
         <Text
           textAlign="center"
@@ -59,6 +61,7 @@ const Version = () => {
             textDecoration="none"
             textAlign="center"
             color="primary"
+            width="100%"
           >
             {version.name}
           </Link>
@@ -84,7 +87,7 @@ const Version = () => {
     content = (
       <>
         <Text fontSize={[1, 3]} letterSpacing={1}>
-          Available version
+          Available languages
         </Text>
         {listVersion()}
       </>
@@ -92,9 +95,14 @@ const Version = () => {
   }
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" pt={6}>
-      {content}
-    </Box>
+    <>
+      <BreadCrumb>
+        <BreadCrumbItem to={{ pathname: '/' }}>Home</BreadCrumbItem>
+      </BreadCrumb>
+      <Box display="flex" flexDirection="column" alignItems="center">
+        {content}
+      </Box>
+    </>
   );
 };
 

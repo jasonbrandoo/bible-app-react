@@ -39,7 +39,9 @@ const Chapters = ({
           fontSize={[1, 4]}
           letterSpacing={1}
           textDecoration="none"
+          textAlign="center"
           color="primary"
+          width="100%"
         >
           {value.reference}
         </Link>
@@ -81,7 +83,13 @@ const Chapters = ({
           {book}
         </BreadCrumbItem>
       </BreadCrumb>
-      <Box display="flex" flexDirection="column" alignItems="center" pt={2}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        width="100%"
+        pt={2}
+      >
         {content}
       </Box>
     </>
