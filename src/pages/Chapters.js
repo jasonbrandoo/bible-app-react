@@ -37,7 +37,7 @@ const Chapters = ({
             },
           }}
           fontSize={[1, 4]}
-          fontWeight="bold"
+          letterSpacing={1}
           textDecoration="none"
           color="primary"
         >
@@ -51,23 +51,19 @@ const Chapters = ({
 
   if (error) {
     content = (
-      <Text fontSize={[1, 3]} fontWeight="bold">
-        Opss something went error
-      </Text>
+      <>
+        <Text fontSize={[1, 3]}>Opss something went error</Text>
+        <Text fontSize={[1, 3]}>
+          Please make sure you have internet connection
+        </Text>
+      </>
     );
-  }
-  if (!data) {
-    content = (
-      <Text fontSize={[1, 3]} fontWeight="bold">
-        loading
-      </Text>
-    );
+  } else if (!data) {
+    content = <Text fontSize={[1, 3]}>Loading...</Text>;
   } else {
     content = (
       <>
-        <Text fontSize={[1, 3]} fontWeight="bold">
-          Chapters
-        </Text>
+        <Text fontSize={[1, 3]}>Chapters</Text>
         {listChapters()}
       </>
     );

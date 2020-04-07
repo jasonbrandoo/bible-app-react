@@ -48,17 +48,15 @@ const Passages = ({
 
   if (error) {
     content = (
-      <Text fontSize={[1, 3]} fontWeight="bold">
-        Opss something went error
-      </Text>
+      <>
+        <Text fontSize={[1, 3]}>Opss something went error</Text>
+        <Text fontSize={[1, 3]}>
+          Please make sure you have internet connection
+        </Text>
+      </>
     );
-  }
-  if (!data) {
-    content = (
-      <Text fontSize={[1, 3]} fontWeight="bold">
-        loading
-      </Text>
-    );
+  } else if (!data) {
+    content = <Text fontSize={[1, 3]}>Loading...</Text>;
   } else {
     content = (
       <>

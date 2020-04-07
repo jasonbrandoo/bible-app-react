@@ -31,7 +31,7 @@ const Books = ({
           },
         }}
         fontSize={[1, 4]}
-        fontWeight="bold"
+        letterSpacing={1}
         textDecoration="none"
         color="primary"
       >
@@ -44,21 +44,19 @@ const Books = ({
 
   if (error) {
     content = (
-      <Text fontSize={[1, 3]} fontWeight="bold">
-        Opss something went error
-      </Text>
+      <>
+        <Text fontSize={[1, 3]}>Opss something went error</Text>
+        <Text fontSize={[1, 3]}>
+          Please make sure you have internet connection
+        </Text>
+      </>
     );
-  }
-  if (!data) {
-    content = (
-      <Text fontSize={[1, 3]} fontWeight="bold">
-        loading
-      </Text>
-    );
+  } else if (!data) {
+    content = <Text fontSize={[1, 3]}>Loading...</Text>;
   } else {
     content = (
       <>
-        <Text fontSize={[1, 3]} fontWeight="bold">
+        <Text fontSize={[1, 3]} letterSpacing={1}>
           Available Books
         </Text>
         {listBook()}
