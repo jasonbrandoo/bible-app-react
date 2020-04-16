@@ -65,7 +65,14 @@ const Chapters = ({
   } else {
     content = (
       <>
-        <Text fontSize={[1, 3]}>Chapters</Text>
+        <Text
+          fontSize={[1, 3]}
+          letterSpacing={1}
+          textAlign="center"
+          width="100%"
+        >
+          Chapters
+        </Text>
         {listChapters()}
       </>
     );

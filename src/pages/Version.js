@@ -86,7 +86,12 @@ const Version = () => {
   } else {
     content = (
       <>
-        <Text fontSize={[1, 3]} letterSpacing={1}>
+        <Text
+          fontSize={[1, 3]}
+          textAlign="center"
+          letterSpacing={1}
+          width="100%"
+        >
           Available languages
         </Text>
         {listVersion()}

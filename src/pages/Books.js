@@ -58,7 +58,12 @@ const Books = ({
   } else {
     content = (
       <>
-        <Text fontSize={[1, 3]} letterSpacing={1}>
+        <Text
+          fontSize={[1, 3]}
+          letterSpacing={1}
+          width="100%"
+          textAlign="center"
+        >
           Available Books
         </Text>
         {listBook()}
